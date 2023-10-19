@@ -1,10 +1,10 @@
 package ma.formations.rest.controller;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import ma.formations.rest.domaine.ArticleDTO;
 import ma.formations.rest.service.IService;
 import ma.formations.rest.service.exception.BusinessException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +14,10 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/api/articles")
+@AllArgsConstructor
 public class ArticleController {
 
-    private final IService service;
-
-    @Autowired
-    public ArticleController(IService service) {
-        this.service = service;
-    }
+    private IService service;
 
     @GetMapping(value = "/all", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public List<ArticleDTO> getAll() {
