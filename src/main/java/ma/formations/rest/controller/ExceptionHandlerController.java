@@ -34,15 +34,15 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     public final ResponseEntity<Object> handleBusinessException(BusinessException ex, WebRequest request) {
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
-        ErrorResponse error = new ErrorResponse("Article values incorrect", details);
-        return new ResponseEntity(error, HttpStatus.NOT_ACCEPTABLE);
+        ErrorResponse error = new ErrorResponse("Functional errors", details);
+        return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleOtherExceptions(Exception ex, WebRequest request) {
         List<String> details = new ArrayList<>();
         details.add(ex.getMessage());
-        ErrorResponse error = new ErrorResponse("Server Error", details);
+        ErrorResponse error = new ErrorResponse("Technical error, please consult your administrator", details);
         return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

@@ -9,12 +9,22 @@ public class ArticleConverter {
 
     public static Article toBO(ArticleDTO dto) {
         if (dto == null) return null;
-        return new Article(dto.getId(), dto.getDescription(), dto.getPrice(), dto.getQuantity());
+        return Article.builder().
+                id(dto.getId()).
+                description(dto.getDescription()).
+                price(dto.getPrice()).
+                quantity(dto.getQuantity()).
+                build();
     }
 
     public static ArticleDTO toDTO(Article bo) {
         if (bo == null) return null;
-        return new ArticleDTO(bo.getId(), bo.getDescription(), bo.getPrice(), bo.getQuantity());
+        return ArticleDTO.builder().
+                id(bo.getId()).
+                description(bo.getDescription()).
+                price(bo.getPrice()).
+                quantity(bo.getQuantity()).
+                build();
     }
 
     public static List<Article> toBOs(List<ArticleDTO> dtoList) {

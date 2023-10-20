@@ -33,6 +33,6 @@ public class DaoImpl implements IDao {
 
     @Override
     public void deleteById(Long id) {
-        database.remove(database.stream().filter(a -> id.equals(a.getId())).findFirst().orElse(null));
+        database.remove(database.stream().filter(a -> id.equals(a.getId())).findFirst());
     }
 }

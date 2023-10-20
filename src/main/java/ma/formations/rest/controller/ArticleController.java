@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import ma.formations.rest.domaine.ArticleDTO;
 import ma.formations.rest.service.IService;
-import ma.formations.rest.service.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +28,6 @@ public class ArticleController {
     @GetMapping(value = "/id/{id}")
     public ResponseEntity<Object> getArticleById(@PathVariable(value = "id") Long id) {
         ArticleDTO articleFound = service.getById(id);
-        if (articleFound == null)
-            return new ResponseEntity<>("Article with id=" + id + "doesn't exist", HttpStatus.OK);
         return new ResponseEntity<>(articleFound, HttpStatus.OK);
     }
 
@@ -38,8 +35,6 @@ public class ArticleController {
     @GetMapping
     public ResponseEntity<Object> getArticleByIdUsingParam(@RequestParam(value = "id") Long id) {
         ArticleDTO articleFound = service.getById(id);
-        if (articleFound == null)
-            return new ResponseEntity<>("Article with id=" + id + "doesn't exist", HttpStatus.OK);
         return new ResponseEntity<>(articleFound, HttpStatus.OK);
     }
 
@@ -51,9 +46,6 @@ public class ArticleController {
 
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<Object> updateArticle(@PathVariable(name = "id") Long id, @RequestBody ArticleDTO dto) {
-        ArticleDTO articleFound = service.getById(id);
-        if (articleFound == null)
-            return new ResponseEntity<>("article with id=" + id + "doesn't exist", HttpStatus.OK);
         service.update(id, dto);
         return new ResponseEntity<>("Article is updated successfully", HttpStatus.OK);
     }
@@ -61,9 +53,6 @@ public class ArticleController {
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteArticle(@PathVariable(name = "id") Long id) {
-        ArticleDTO articleFound = service.getById(id);
-        if (articleFound == null)
-            throw new BusinessException("Article with id=" + id + " doesn't exist");
         service.deleteById(id);
         return new ResponseEntity<>("Article is deleted successfully", HttpStatus.OK);
     }
