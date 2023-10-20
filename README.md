@@ -1,0 +1,11 @@
+- Understand the architecture of Rest.
+- Understand the 04 methods GET, POST, PUT and DELETE.
+- Implement Rest with Spring Boot and Spring Rest.
+- Handle exceptions with Spring (@ControllerAdvice) when processing a Rest request.
+- Understand how Spring Rest can generate the resource in XML format.
+- Develop unit tests and integration tests with Spring, Junit and Mockito.
+- Do the tests with postman.
+- Understand the principle of “Spring Active Profile”.
+- Configure and administer the Apache Tomcat version 10.
+- Understand how to create the WAR file with Spring Boot using Maven.
+- Deploy the WAR file on the container server.
